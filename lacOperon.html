@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3P1T0TKZ64"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3P1T0TKZ64');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lac Operon</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<style>
+    body{
+        font-family: Georgia, serif;
+        text-align: center;
+    }
+    #logo{
+        text-align: left;
+    }
+    footer{
+        position: fixed;     
+       text-align: center;    
+       bottom: 0px; 
+       width: 100%;
+    }
+</style>
+
+<body>
+    <div>
+        <a id="logo" href="index.html"><h4>Bioloops.works</h4></a>
+        <h1 class="d-flex justify-content-center">The Lac Operon</h1>
+        <br>
+        <h4>Lactose Levels:</h4>
+    
+        <input type="radio" name="lactose" id="lactoseHigh">
+        <label for="lactoseHigh">High</label>
+        
+        <input type="radio" name="lactose" id="lactoseLow">
+        <label for="lactose">Low</label>
+
+        <h4>Glucose Levels:</h4>
+        <input type="radio" name="glucose" id="glucoseHigh">
+        <label for="glucoseHigh">High</label>
+
+        <input type="radio" name="glucose" id="glucoseLow">
+        <label for="glucoseLow">Low</label>
+        <br>    
+        <br>
+        <button id ="result" class="mb-3">Get Result</button>
+    </div>
+
+    <h3 id="repressor" class="mb-3"></h3>
+    <h3 id="cAMP" class="mb-3"></h3>
+    <h3 id="transcription" class="mb-3"></h3>
+    <footer> Errors or bugs? email nadim.barakat@tufts.edu with a screenshot</footer>
+
+    <script>
+        button = document.getElementById("result").onclick = Calculate;
+
+        function Calculate () {
+            glucoseHigh = document.getElementById("glucoseHigh").checked;
+            glucoseLow = document.getElementById("glucoseLow").checked;
+
+            lactoseHigh = document.getElementById("lactoseHigh").checked;
+            lactoseLow = document.getElementById("lactoseLow").checked;
+            
+            repressor = document.getElementById("repressor");
+            cAMP = document.getElementById("cAMP");
+            transcription = document.getElementById("transcription");
+
+        if (lactoseLow == true && glucoseHigh == true){
+
+            // console.log("The represser will bind to the operator which prevents lac operon from tanscription ");
+            
+            repressor.innerHTML = "Since lactose levels are low, the repressor will bind to the operator."
+            cAMP.innerHTML = "Because glucose levels are high, cAMP levels will be low = CAP activator will not bind"
+            transcription.innerHTML = "A bound repressor and unbound CAP activator = transcription of the lac operon gene will not occur."
+            
+        }
+        else if (glucoseLow == true && lactoseHigh == true) {
+            repressor.innerHTML = "Since lactose levels are high, lactose will bind to the repressor and prevent the repressor from binding to the operator."
+            cAMP.innerHTML = "Since glucose is low, cAMP levels will be high. CAP activator will bind."
+            transcription.innerHTML = "No repressor and bound CAP activator = high rate of lac operon gene transcription"
+        }
+        else if(lactoseHigh == true && glucoseHigh == true){
+            repressor.innerHTML = "Since lactose levels are high, lactose will bind to the repressor and prevent the repressor from binding to the operator."
+            cAMP.innerHTML = "Since glucose levels are high, cAMP levels will be low. CAP activator will not bind."
+            transcription.innerHTML = "The repressor didn't bind, but neither did the activator = transcription of lac operon genes will happen, but at a SLOW pace "
+        }
+        else if (lactoseLow==true && glucoseLow == true){
+            repressor.innerHTML = "Since lactose levels are low, the repressor will bind to the operator."
+            cAMP.innerHTML = "Since glucose is low, cAMP levels will be high. CAP activator will bind."
+            transcription.innerHTML = "Although the activator is present, the bound repressor will prevent transcription = no transcription of lac operon genes"
+        }
+        else{
+            console.log("error");
+            repressor.innerHTML = ""
+            cAMP.innerHTML = ""
+            transcription.innerHTML = "Please select levels from both categories."
+        }
+        }
+        
+    </script>
+
+</body>
+</html>
